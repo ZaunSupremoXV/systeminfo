@@ -1,0 +1,78 @@
+{
+    "name": "systeminfo",
+    "productName": "System Info",
+    "version": "1.0.0",
+    "description": "My Electron application description",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "electron-forge start",
+        "package": "electron-forge package",
+        "make": "electron-forge make",
+        "publish": "electron-forge publish",
+        "lint": "echo \"No linting configured\"",
+        "build-installer": "electron-builder"
+    },
+    "build": {
+        "appId": "systeminfo",
+        "win": {
+            "target": [
+                "nsis"
+            ],
+            "icon": "src/icon.png"
+        },
+        "nsis": {
+            "installerIcon": "src/icon.ico",
+            "uninstallerIcon": "src/icon.ico",
+            "uninstallDisplayName": "System Info",
+            "license": "license.txt",
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true
+        }
+    },
+    "keywords": [],
+    "author": "Erick Vasconcelos",
+    "license": "MIT",
+    "config": {
+        "forge": {
+            "packagerConfig": {},
+            "makers": [
+                {
+                    "name": "@electron-forge/maker-squirrel",
+                    "config": {
+                        "name": "systeminfo"
+                    }
+                },
+                {
+                    "name": "@electron-forge/maker-zip",
+                    "platforms": [
+                        "darwin"
+                    ]
+                },
+                {
+                    "name": "@electron-forge/maker-deb",
+                    "config": {}
+                },
+                {
+                    "name": "@electron-forge/maker-rpm",
+                    "config": {}
+                }
+            ]
+        }
+    },
+    "dependencies": {
+        "active-windows": "^0.1.14",
+        "electron-squirrel-startup": "^1.0.0",
+        "is-online": "^8.4.0",
+        "os-utils": "0.0.14",
+        "systeminformation": "^4.26.10"
+    },
+    "devDependencies": {
+        "@electron-forge/cli": "^6.0.0-beta.51",
+        "@electron-forge/maker-deb": "^6.0.0-beta.51",
+        "@electron-forge/maker-rpm": "^6.0.0-beta.51",
+        "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
+        "@electron-forge/maker-zip": "^6.0.0-beta.51",
+        "electron": "9.0.0",
+        "electron-builder": "^22.6.1"
+    }
+}

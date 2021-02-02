@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>System Info</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="info mx-3">
+        <div class="card-deck position2 mt-3">
+
+            <div class="card text-left bg-dark" style="width: 18rem; height: auto;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="nome">Modelo:</label>
+                                <span id="model">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="nome">Fabricante:</label>
+                                <span id="fabricante">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="nome">Serial:</label>
+                                <span id="serial">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-left bg-dark" style="width: 18rem;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="nome">Hostname:</label>
+                                <span id="hostname">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="nome">User:</label>
+                                <span id="user">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="nome">Rede:</label>
+                                <span id="network">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card text-left bg-dark" style="width: 18rem;">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="nome">Processo:</label>
+                                <span id="processo">-</span>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="nome">Programa:</label>
+                                <span id="programa">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="mx-3">
+        <div class="card-deck position mb-3">
+            <div class="card text-center bg-dark" style="width: 18rem;">
+                <div class="card-body">
+                    <h3 class="nome">CPU (%)</h3>
+                    <span id="cpu">-</span>
+                </div>
+            </div>
+            <div class="card text-center bg-dark" style="width: 18rem;">
+                <div class="card-body">
+                    <h3 class="nome">Memória Livre (%)</h3>
+                    <span id="ram">-</span>
+                </div>
+            </div>
+            <div class="card text-center bg-dark" style="width: 18rem;">
+                <div class="card-body">
+                    <h3 class="nome">Memória (GB)</h3>
+                    <span id="total-ram">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const electron = require('electron');
+        const ipcRenderer = electron.ipcRenderer;
+
+        ipcRenderer.on('cpu', (event, data) => {
+            document.getElementById('cpu').innerHTML = data.toFixed(2);
+        });
+
+        ipcRenderer.on('ram', (event, data) => {
+            document.getElementById('ram').innerHTML = data.toFixed(2);
+        });
+
+        ipcRenderer.on('total-ram', (event, data) => {
+            document.getElementById('total-ram').innerHTML = data.toFixed(2);
+        });
+
+        ipcRenderer.on('hostname', (event, data) => {
+            document.getElementById('hostname').innerHTML = data;
+        });
+        ipcRenderer.on('user', (event, data) => {
+            document.getElementById('user').innerHTML = data;
+        });
+        ipcRenderer.on('model', (event, data) => {
+            document.getElementById('model').innerHTML = data;
+        });
+        ipcRenderer.on('fabricante', (event, data) => {
+            document.getElementById('fabricante').innerHTML = data;
+        });
+        ipcRenderer.on('serial', (event, data) => {
+            document.getElementById('serial').innerHTML = data;
+        });
+        ipcRenderer.on('processo', (event, data) => {
+            document.getElementById('processo').innerHTML = data;
+        });
+        ipcRenderer.on('programa', (event, data) => {
+            document.getElementById('programa').innerHTML = data;
+        });
+        ipcRenderer.on('network', (event, data) => {
+            document.getElementById('network').innerHTML = data;
+        });
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
