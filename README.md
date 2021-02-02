@@ -12,7 +12,7 @@ Commands:
 
 Commands builder:
 
-    npm build-installer
+    npm build-installer or npx electron-builder -g
 
 
 
